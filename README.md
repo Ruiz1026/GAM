@@ -1,6 +1,6 @@
 # 🔍 Adaptation follow human attention: Gaze-assisted medical segment anything model
 
-A PyTorch implementation of **main_GAM**, a novel Gaze-assisted medical segment anything model (GAM) designed to improve deep neural network performance by adaptively enhancing important spatial and channel features. This repository includes training and testing scripts for reproducible experiments.
+A PyTorch implementation of **GAM**, a novel Gaze-assisted medical segment anything model (GAM) designed to improve deep neural network performance by adaptively enhancing important spatial and channel features. This repository includes training and testing scripts for reproducible experiments.
 
 ---
 
