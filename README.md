@@ -12,5 +12,8 @@ A PyTorch implementation of **main_GAM**, a novel Gaze-assisted medical segment 
 
 ---
 
-## 📁 Project Structure
+## 📁 Training
+python train_lora.py
+## 📁 testing
+python test_lora.py
 
