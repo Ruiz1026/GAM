@@ -7,8 +7,8 @@ from torch import optim
 from torch.utils.data import DataLoader
 from DataLoader_adapt import TrainingDataset, stack_dict_batched
 from utils import FocalDiceloss_IoULoss, get_logger, generate_point,generate_point1, setting_prompt_none
-from GBL import GazeWeightedCrossEntropyLoss
-from GCA import GCALoss
+from GB import GazeWeightedCrossEntropyLoss
+from GA import GCALoss
 from metrics import SegMetrics
 import time
 from tqdm import tqdm
