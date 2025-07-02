@@ -274,10 +274,10 @@ def main(args):
     sam = sam_model_registry[args.model_type](args).to(args.device)
     model= LoRA_Sam(sam,r = 4).to(args.device)
     model_t = sam_model_registry[args.model_type](args).to(args.device)
-    gca=GCALoss().to(args.device)
+    ga=GALoss().to(args.device)
     params_list = nn.ModuleList([])
     params_list.append(model)
-    params_list.append(gca)
+    params_list.append(ga)
     #optimizer = optim.Adam(model.parameters(), lr=args.lr)
     optimizer = optim.Adam(params_list.parameters(), lr=args.lr)
     criterion = FocalDiceloss_IoULoss()
@@ -315,7 +315,7 @@ def main(args):
         train_metrics = {}
         start = time.time()
         os.makedirs(os.path.join(f"{args.work_dir}/models", args.run_name), exist_ok=True)
-        train_losses, train_iter_metrics = train_one_epoch(args, model,model_t, optimizer, train_loader, epoch, criterion,criterion_gaze,gca)
+        train_losses, train_iter_metrics = train_one_epoch(args, model,model_t, optimizer, train_loader, epoch, criterion,criterion_gaze,ga)
 
         if args.lr_scheduler is not None:
             scheduler.step()
