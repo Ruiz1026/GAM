@@ -140,7 +140,7 @@ def prompt_and_decoder(args, batched_input, model, image_embeddings, decoder_ite
     masks = F.interpolate(low_res_masks,(args.image_size, args.image_size), mode="bilinear", align_corners=False,)
     return masks, low_res_masks, iou_predictions,src
 
-def train_one_epoch(args, model,model_t, optimizer, train_loader, epoch, criterion,criterion_gaze,gca):
+def train_one_epoch(args, model,model_t, optimizer, train_loader, epoch, criterion,criterion_gaze,ga):
     train_loader = tqdm(train_loader)
     train_losses = []
     train_iter_metrics = [0] * len(args.metrics)
@@ -177,7 +177,7 @@ def train_one_epoch(args, model,model_t, optimizer, train_loader, epoch, criteri
                 masks, low_res_masks, iou_predictions,src = prompt_and_decoder_lora(args, batched_input, model, image_embeddings, decoder_iter = False)
                 
                 _, _, _,src_t = prompt_and_decoder(args, batched_input, model_t, image_embeddings, decoder_iter = False)
-                loss = criterion(masks, labels, iou_predictions)+1.5*criterion_gaze(masks,labels,heatmap)+0.3*gca(src_t,src,heatmap.float())
+                loss = criterion(masks, labels, iou_predictions)+1.5*criterion_gaze(masks,labels,heatmap)+0.3*ga(src_t,src,heatmap.float())
                 with amp.scale_loss(loss, optimizer) as scaled_loss:
                     scaled_loss.backward(retain_graph=False)
 
