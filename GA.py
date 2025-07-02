@@ -82,7 +82,7 @@ class CrossAdaptiveAttention(nn.Module):
         res=self.patch_unembed(attn_outputs,self.img_size // self.patch_size)
         return res
 
-class GCALoss(nn.Module):  
+class GALoss(nn.Module):  
     def __init__(self,img_size=16,num_head=8,patch_size=4,in_chans=256,dim=256,dropout_pro=0.0,gaze_channels=3):
         super().__init__()
         self.CA=CrossAdaptiveAttention(img_size=16,num_head=8,patch_size=4,in_chans=256,dim=512,dropout_pro=0.0)
